@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 使用css3提供的 calc()计算  vm视口的宽度 */
+    html {
+      /* 一般设计稿750，640 1rem=100px 基准值都是100px 
+      当前屏幕的宽度(vm) / 设计稿的宽度 = 要求的动态屏幕的font-size / 100  */
+      /* 设置根字体大小单位为vw，页面元素的尺寸单位都设为rem，搭配vw和rem，可实现布局根据视口变化而变化 */
+      font-size: calc((100vw / 设计稿的宽度)*100);
+
+      /* 同时，通过Media Queries 限制根元素字体最大最小值 */
+      @media screen and (min-width: 640px) {
+        font-size: calc((100vw / 640)*100);
+      }
+
+      @media screen and (max-width: 320px) {
+        font-size: calc((100vw / 320)*100);
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="rem.css">
+</head>
+
+<body>
+
+</body>
+
+</html>
