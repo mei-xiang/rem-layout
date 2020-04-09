@@ -6,29 +6,22 @@
 
 ### 方法一：
 
-function setRem(design) {
-//1 获取当前屏幕的宽度
-var width = window.innerWidth;
-
-    if (width > 640) {
-      width = 640;
-    }
-    if (width < 320) {
-      width = 320;
-    }
-
-    //动态设置rem的值
-    document.querySelector("html").style.fontSize =
-      (width / design) * 100 + "px";
-
-}
-
-setRem(640);
-
-//检测屏幕宽度变化，实时动态设置
-window.onresize = function() {
-setRem(640);
-};
+ // 设计稿750/640px,基准值为100px 利用测量的px大小除以100px 即可得到所需rem值
+(function () {
+  remLayout();
+  function remLayout() {
+      // 获取屏幕宽度
+      var w = document.documentElement.clientWidth;
+      w = w > 640 ? 640 : w;
+      w = w <= 320 ? 320 : w;
+      // document.documentElement 获取到的html标签
+      document.documentElement.style.fontSize = w / (750/100) + 'px'; // 750为设计稿的宽度，100为750设计稿的基准值
+  }
+  // resize 监听页面变化
+  window.addEventListener('resize', function () {
+      remLayout();
+  }, false);
+})();
 
 ### 方法二：
 
